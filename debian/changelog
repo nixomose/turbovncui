@@ -1,9 +1,10 @@
-turbovncui (1.0.0-1) unstable; urgency=medium
+turbovncui (2.0.0-1) unstable; urgency=medium
 
-  * Initial release
-  * Graphical frontend for TurboVNC
-  * Connection management with persistent storage
-  * Modern PyQt6-based interface
-  * Double-click to connect functionality
+  * Stable release with Debian packaging
+  * Fixed entry point and module imports
+  * Updated to PyQt5 for better compatibility
+  * Improved GitHub Actions workflow
+  * Enhanced error handling and debugging
+  * Complete Debian package support
 
  -- TurboVNC UI Developer <dev@example.com>  Wed, 31 Jul 2024 21:00:00 +0000 

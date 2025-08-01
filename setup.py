@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="turbovncui",
-    version="1.0.0",
+    version="2.0.0",
     description="A graphical frontend for TurboVNC",
     author="TurboVNC UI Developer",
     package_dir={"": "src"},
@@ -17,7 +17,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "turbovncui=main:main",
+            "turbovncui=turbovncui.main:main",
         ],
     },
     python_requires=">=3.8",
