@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
         
         # Connection list
         self.connection_list = QListWidget()
-        self.connection_list.itemDoubleClicked.connect(self.edit_connection)
+        self.connection_list.itemDoubleClicked.connect(self.connect_to_double_clicked)
         layout.addWidget(self.connection_list)
         
         # Button layout
@@ -188,6 +188,27 @@ class MainWindow(QMainWindow):
                 self.statusBar().showMessage(f"Deleted connection: {connection_name}")
             else:
                 QMessageBox.warning(self, "Error", "Failed to delete connection.")
+    
+    def connect_to_double_clicked(self, item):
+        """Connect to the double-clicked VNC server."""
+        connection_name = item.data(Qt.ItemDataRole.UserRole)
+        connection = self.db.get_connection_by_name(connection_name)
+        
+        if not connection:
+            QMessageBox.warning(self, "Error", "Connection not found.")
+            return
+        
+        # Save as last used connection
+        self.db.save_last_connection(connection)
+        
+        # Launch TurboVNC
+        if self.vnc_launcher.launch_connection(connection):
+            self.statusBar().showMessage(f"Connecting to {connection.name}...")
+        else:
+            QMessageBox.critical(
+                self, "Error", 
+                "Failed to launch TurboVNC. Please check your installation."
+            )
     
     def connect_to_selected(self):
         """Connect to the selected VNC server."""
