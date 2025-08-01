@@ -4,14 +4,8 @@ TurboVNC UI - A graphical frontend for TurboVNC
 """
 
 import sys
-from pathlib import Path
-
-# Add the src directory to Python path
-src_path = Path(__file__).parent
-sys.path.insert(0, str(src_path))
-
 from PyQt5.QtWidgets import QApplication
-from gui.main_window import MainWindow
+from turbovncui.gui.main_window import MainWindow
 
 
 def main():

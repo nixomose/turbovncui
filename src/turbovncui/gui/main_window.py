@@ -4,9 +4,9 @@ from PyQt5.QtWidgets import (
     QLabel
 )
 from PyQt5.QtCore import Qt
-from utils.database import ConnectionDatabase
-from utils.vnc_launcher import VNCLaucher
-from gui.connection_dialog import ConnectionDialog
+from turbovncui.utils.database import ConnectionDatabase
+from turbovncui.utils.vnc_launcher import VNCLaucher
+from turbovncui.gui.connection_dialog import ConnectionDialog
 
 
 class MainWindow(QMainWindow):

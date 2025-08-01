@@ -2,7 +2,7 @@ import json
 import os
 from pathlib import Path
 from typing import List, Optional
-from models.connection import Connection
+from turbovncui.models.connection import Connection
 
 
 class ConnectionDatabase:

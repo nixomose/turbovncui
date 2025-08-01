@@ -1,6 +1,6 @@
 import subprocess
 from typing import Optional
-from models.connection import Connection
+from turbovncui.models.connection import Connection
 
 
 class VNCLaucher:
