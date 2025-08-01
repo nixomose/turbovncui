@@ -3,7 +3,6 @@
 # Build script for TurboVNC UI Debian package
 # This script creates a .deb file that can be installed on Debian/Ubuntu systems
 
-set -e
 
 echo "Building TurboVNC UI Debian package..."
 
@@ -23,6 +22,8 @@ fi
 echo "Installing build dependencies..."
 sudo apt-get update
 sudo apt-get install -y build-essential devscripts debhelper dh-python python3-all python3-setuptools
+
+set -e
 
 # Create dist directory
 echo "Creating dist directory..."
