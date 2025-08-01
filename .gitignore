@@ -151,4 +151,10 @@ Thumbs.db
 # Build artifacts
 dist/*.deb
 dist/*.buildinfo
-dist/*.changes 
+dist/*.changes
+
+# Debian build artifacts
+debian/turbovncui/
+debian/*.debhelper
+.pybuild/
+*.egg-info/ 
