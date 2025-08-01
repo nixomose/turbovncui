@@ -47,6 +47,24 @@ jobs:
         name: turbovncui-deb
         path: dist/turbovncui_*
         
+    - name: List dist directory contents
+      if: github.event_name == 'release'
+      run: |
+        echo "Contents of dist directory:"
+        ls -la dist/
+        
+    - name: Find and upload .deb file
+      if: github.event_name == 'release'
+      run: |
+        DEB_FILE=$(find dist/ -name "turbovncui_*.deb" | head -1)
+        if [ -z "$DEB_FILE" ]; then
+          echo "Error: No .deb file found in dist directory"
+          ls -la dist/
+          exit 1
+        fi
+        echo "Found .deb file: $DEB_FILE"
+        cp "$DEB_FILE" /tmp/turbovncui.deb
+        
     - name: Upload Release Assets
       if: github.event_name == 'release'
       uses: actions/upload-release-asset@v1
@@ -54,6 +72,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: dist/turbovncui_*.deb
+        asset_path: /tmp/turbovncui.deb
         asset_name: turbovncui.deb
         asset_content_type: application/vnd.debian.binary-package 
