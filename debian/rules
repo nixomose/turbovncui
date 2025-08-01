@@ -1,0 +1,31 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE = 1
+
+# This has to be exported for the debian/control file to work properly.
+export DH_OPTIONS
+
+%:
+	dh $@ --with python3
+
+override_dh_auto_install:
+	dh_auto_install
+	# Install the application files
+	mkdir -p debian/turbovncui/usr/bin
+	cp run.py debian/turbovncui/usr/bin/turbovncui
+	chmod +x debian/turbovncui/usr/bin/turbovncui
+	
+	# Install desktop file
+	mkdir -p debian/turbovncui/usr/share/applications
+	cp debian/turbovncui.desktop debian/turbovncui/usr/share/applications/
+	
+	# Install icon
+	mkdir -p debian/turbovncui/usr/share/icons/hicolor/256x256/apps/
+	cp debian/turbovncui.png debian/turbovncui/usr/share/icons/hicolor/256x256/apps/
+	
+	# Install man page
+	mkdir -p debian/turbovncui/usr/share/man/man1
+	cp debian/turbovncui.1 debian/turbovncui/usr/share/man/man1/
+	gzip -9 debian/turbovncui/usr/share/man/man1/turbovncui.1 

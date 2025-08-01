@@ -1,0 +1,26 @@
+Source: turbovncui
+Section: utils
+Priority: optional
+Maintainer: TurboVNC UI Developer <dev@example.com>
+Build-Depends: debhelper (>= 13), dh-python, python3-all, python3-setuptools
+Standards-Version: 4.6.0
+Homepage: https://github.com/yourusername/turbovncui
+Vcs-Browser: https://github.com/yourusername/turbovncui
+Vcs-Git: https://github.com/yourusername/turbovncui.git
+
+Package: turbovncui
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}, python3-pyqt6, turbovnc
+Description: Graphical frontend for TurboVNC
+ TurboVNC UI provides a modern, user-friendly graphical interface
+ for managing and launching TurboVNC connections. It allows users
+ to create, edit, delete, and connect to VNC servers without
+ having to remember command-line syntax.
+ .
+ Features:
+  * Connection management (add, edit, delete)
+  * Persistent storage of connection settings
+  * One-click connection to VNC servers
+  * Remembers last used connection
+  * Modern PyQt6-based interface
+  * Compatible with XFCE and other desktop environments 

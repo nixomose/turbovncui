@@ -1,0 +1,60 @@
+.TH TURBOVNCUI 1 "July 31, 2024" "TurboVNC UI" "User Commands"
+
+.SH NAME
+turbovncui \- Graphical frontend for TurboVNC
+
+.SH SYNOPSIS
+.B turbovncui
+
+.SH DESCRIPTION
+.B turbovncui
+is a modern, user-friendly graphical interface for managing and launching TurboVNC connections. It provides an intuitive way to create, edit, delete, and connect to VNC servers without having to remember command-line syntax.
+
+.SH FEATURES
+.TP
+.B Connection Management
+Create, edit, and delete VNC server connections with a graphical interface.
+.TP
+.B Persistent Storage
+All connections are saved locally and persist between sessions.
+.TP
+.B Quick Connect
+Double-click any connection to connect immediately.
+.TP
+.B Last Used Memory
+Automatically remembers and highlights your last used connection.
+.TP
+.B Modern Interface
+Clean, responsive GUI built with PyQt6, compatible with XFCE.
+
+.SH FILES
+.TP
+.B ~/.config/turbovncui/connections.json
+Stores all saved VNC connections.
+.TP
+.B ~/.config/turbovncui/last_connection.json
+Stores the last used connection.
+
+.SH DEPENDENCIES
+.B turbovncui
+requires TurboVNC to be installed on the system. The application will launch TurboVNC using the \fIvncviewer\fR command.
+
+.SH EXAMPLES
+.TP
+.B Starting the application:
+.BR turbovncui
+.TP
+.B Adding a connection:
+Use the "Add Connection" button in the GUI.
+.TP
+.B Connecting to a server:
+Double-click a connection in the list or select it and click "Connect".
+
+.SH BUGS
+Report bugs to the project's issue tracker.
+
+.SH AUTHOR
+TurboVNC UI Developer <dev@example.com>
+
+.SH COPYRIGHT
+This software is open source and available under the MIT License. 

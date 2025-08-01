@@ -1,0 +1,55 @@
+name: Build Debian Package
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential devscripts debhelper dh-python python3-all python3-setuptools imagemagick
+        
+    - name: Create icon
+      run: |
+        convert -size 256x256 xc:transparent -fill "#4CAF50" -draw "circle 128,128 128,64" -fill white -pointsize 48 -gravity center -annotate +0+0 "VNC" debian/turbovncui.png
+        
+    - name: Build Debian package
+      run: |
+        debuild -b -us -uc
+        
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: turbovncui-deb
+        path: ../turbovncui_*.deb
+        
+    - name: Create Release Assets
+      if: github.event_name == 'release'
+      run: |
+        # Copy the built .deb file to the release
+        cp ../turbovncui_*.deb /tmp/
+        
+    - name: Upload Release Assets
+      if: github.event_name == 'release'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: /tmp/turbovncui_*.deb
+        asset_name: turbovncui.deb
+        asset_content_type: application/vnd.debian.binary-package 
