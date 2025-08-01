@@ -12,10 +12,6 @@ export DH_OPTIONS
 
 override_dh_auto_install:
 	dh_auto_install
-	# Install the application files
-	mkdir -p debian/turbovncui/usr/bin
-	cp run.py debian/turbovncui/usr/bin/turbovncui
-	chmod +x debian/turbovncui/usr/bin/turbovncui
 	
 	# Install desktop file
 	mkdir -p debian/turbovncui/usr/share/applications
