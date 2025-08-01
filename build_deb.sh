@@ -32,6 +32,8 @@ mkdir -p dist
 echo "Cleaning previous builds..."
 rm -rf debian/turbovncui/
 rm -f dist/turbovncui_*.deb
+rm -f dist/turbovncui_*.buildinfo
+rm -f dist/turbovncui_*.changes
 
 # Create a simple icon (placeholder - you can replace this with a real icon)
 echo "Creating placeholder icon..."
@@ -51,9 +53,11 @@ fi
 echo "Building Debian package..."
 debuild -b -us -uc
 
-# Move the built package to dist directory
-echo "Moving package to dist directory..."
+# Move all build artifacts to dist directory
+echo "Moving build artifacts to dist directory..."
 mv ../turbovncui_*.deb dist/
+mv ../turbovncui_*.buildinfo dist/ 2>/dev/null || true
+mv ../turbovncui_*.changes dist/ 2>/dev/null || true
 
 # Check if build was successful
 if [ $? -eq 0 ]; then
@@ -61,7 +65,7 @@ if [ $? -eq 0 ]; then
     echo "✅ Build successful!"
     echo ""
     echo "Package files created:"
-    ls -la dist/turbovncui_*.deb
+    ls -la dist/turbovncui_*
     echo ""
     echo "To install the package:"
     echo "sudo dpkg -i dist/turbovncui_*.deb"

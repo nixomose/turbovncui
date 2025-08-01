@@ -35,15 +35,17 @@ jobs:
       run: |
         debuild -b -us -uc
         
-    - name: Move package to dist directory
+    - name: Move all build artifacts to dist directory
       run: |
         mv ../turbovncui_*.deb dist/
+        mv ../turbovncui_*.buildinfo dist/ 2>/dev/null || true
+        mv ../turbovncui_*.changes dist/ 2>/dev/null || true
         
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
         name: turbovncui-deb
-        path: dist/turbovncui_*.deb
+        path: dist/turbovncui_*
         
     - name: Create Release Assets
       if: github.event_name == 'release'
