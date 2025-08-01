@@ -12,7 +12,7 @@ setup(
     author="TurboVNC UI Developer",
     packages=find_packages(),
     install_requires=[
-        "PyQt6>=6.4.0",
+        "PyQt5>=5.15.0",
     ],
     entry_points={
         "console_scripts": [

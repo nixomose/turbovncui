@@ -24,10 +24,14 @@ echo "Installing build dependencies..."
 sudo apt-get update
 sudo apt-get install -y build-essential devscripts debhelper dh-python python3-all python3-setuptools
 
+# Create dist directory
+echo "Creating dist directory..."
+mkdir -p dist
+
 # Clean any previous builds
 echo "Cleaning previous builds..."
 rm -rf debian/turbovncui/
-rm -f ../turbovncui_*.deb
+rm -f dist/turbovncui_*.deb
 
 # Create a simple icon (placeholder - you can replace this with a real icon)
 echo "Creating placeholder icon..."
@@ -47,16 +51,20 @@ fi
 echo "Building Debian package..."
 debuild -b -us -uc
 
+# Move the built package to dist directory
+echo "Moving package to dist directory..."
+mv ../turbovncui_*.deb dist/
+
 # Check if build was successful
 if [ $? -eq 0 ]; then
     echo ""
     echo "✅ Build successful!"
     echo ""
     echo "Package files created:"
-    ls -la ../turbovncui_*.deb
+    ls -la dist/turbovncui_*.deb
     echo ""
     echo "To install the package:"
-    echo "sudo dpkg -i ../turbovncui_*.deb"
+    echo "sudo dpkg -i dist/turbovncui_*.deb"
     echo ""
     echo "If there are dependency issues, run:"
     echo "sudo apt-get install -f"

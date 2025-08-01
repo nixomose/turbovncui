@@ -146,4 +146,9 @@ Thumbs.db
 
 # Application specific
 # Don't track user configuration files
-~/.config/turbovncui/ 
+~/.config/turbovncui/
+
+# Build artifacts
+dist/*.deb
+dist/*.buildinfo
+dist/*.changes 

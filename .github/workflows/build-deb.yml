@@ -23,6 +23,10 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential devscripts debhelper dh-python python3-all python3-setuptools imagemagick
         
+    - name: Create dist directory
+      run: |
+        mkdir -p dist
+        
     - name: Create icon
       run: |
         convert -size 256x256 xc:transparent -fill "#4CAF50" -draw "circle 128,128 128,64" -fill white -pointsize 48 -gravity center -annotate +0+0 "VNC" debian/turbovncui.png
@@ -31,17 +35,21 @@ jobs:
       run: |
         debuild -b -us -uc
         
+    - name: Move package to dist directory
+      run: |
+        mv ../turbovncui_*.deb dist/
+        
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
         name: turbovncui-deb
-        path: ../turbovncui_*.deb
+        path: dist/turbovncui_*.deb
         
     - name: Create Release Assets
       if: github.event_name == 'release'
       run: |
         # Copy the built .deb file to the release
-        cp ../turbovncui_*.deb /tmp/
+        cp dist/turbovncui_*.deb /tmp/
         
     - name: Upload Release Assets
       if: github.event_name == 'release'

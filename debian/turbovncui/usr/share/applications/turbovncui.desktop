@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=TurboVNC UI
+Comment=Graphical frontend for TurboVNC
+Exec=turbovncui
+Icon=turbovncui
+Terminal=false
+Categories=Network;RemoteAccess;
+Keywords=VNC;Remote;Desktop;TurboVNC; 

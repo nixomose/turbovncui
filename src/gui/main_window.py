@@ -1,9 +1,9 @@
-from PyQt6.QtWidgets import (
+from PyQt5.QtWidgets import (
     QMainWindow, QVBoxLayout, QHBoxLayout, QWidget,
     QPushButton, QListWidget, QListWidgetItem, QMessageBox,
     QLabel
 )
-from PyQt6.QtCore import Qt
+from PyQt5.QtCore import Qt
 from utils.database import ConnectionDatabase
 from utils.vnc_launcher import VNCLaucher
 from gui.connection_dialog import ConnectionDialog
@@ -91,7 +91,7 @@ class MainWindow(QMainWindow):
             # Find and select the last connection in the list
             for i in range(self.connection_list.count()):
                 item = self.connection_list.item(i)
-                if (item.data(Qt.ItemDataRole.UserRole) == 
+                if (item.data(Qt.UserRole) == 
                     self.last_connection.name):
                     self.connection_list.setCurrentItem(item)
                     break
@@ -102,13 +102,13 @@ class MainWindow(QMainWindow):
         
         for connection in self.connections:
             item = QListWidgetItem(str(connection))
-            item.setData(Qt.ItemDataRole.UserRole, connection.name)
+            item.setData(Qt.UserRole, connection.name)
             self.connection_list.addItem(item)
     
     def add_connection(self):
         """Add a new connection."""
         dialog = ConnectionDialog(self)
-        if dialog.exec() == ConnectionDialog.DialogCode.Accepted:
+        if dialog.exec() == ConnectionDialog.Accepted:
             connection, _ = dialog.get_connection_data()
             
             # Check if name already exists
@@ -133,7 +133,7 @@ class MainWindow(QMainWindow):
             )
             return
         
-        connection_name = current_item.data(Qt.ItemDataRole.UserRole)
+        connection_name = current_item.data(Qt.UserRole)
         connection = self.db.get_connection_by_name(connection_name)
         
         if connection:
@@ -141,14 +141,14 @@ class MainWindow(QMainWindow):
     
     def edit_connection(self, item):
         """Edit a connection."""
-        connection_name = item.data(Qt.ItemDataRole.UserRole)
+        connection_name = item.data(Qt.UserRole)
         connection = self.db.get_connection_by_name(connection_name)
         
         if not connection:
             return
         
         dialog = ConnectionDialog(self, connection)
-        if dialog.exec() == ConnectionDialog.DialogCode.Accepted:
+        if dialog.exec() == ConnectionDialog.Accepted:
             new_connection, old_name = dialog.get_connection_data()
             
             # Check if new name conflicts with existing connections
@@ -174,15 +174,15 @@ class MainWindow(QMainWindow):
             )
             return
         
-        connection_name = current_item.data(Qt.ItemDataRole.UserRole)
+        connection_name = current_item.data(Qt.UserRole)
         
         reply = QMessageBox.question(
             self, "Confirm Delete",
             f"Are you sure you want to delete '{connection_name}'?",
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+            QMessageBox.Yes | QMessageBox.No
         )
         
-        if reply == QMessageBox.StandardButton.Yes:
+        if reply == QMessageBox.Yes:
             if self.db.delete_connection(connection_name):
                 self.load_connections()
                 self.statusBar().showMessage(f"Deleted connection: {connection_name}")
@@ -191,7 +191,7 @@ class MainWindow(QMainWindow):
     
     def connect_to_double_clicked(self, item):
         """Connect to the double-clicked VNC server."""
-        connection_name = item.data(Qt.ItemDataRole.UserRole)
+        connection_name = item.data(Qt.UserRole)
         connection = self.db.get_connection_by_name(connection_name)
         
         if not connection:
@@ -220,7 +220,7 @@ class MainWindow(QMainWindow):
             )
             return
         
-        connection_name = current_item.data(Qt.ItemDataRole.UserRole)
+        connection_name = current_item.data(Qt.UserRole)
         connection = self.db.get_connection_by_name(connection_name)
         
         if not connection:
