@@ -1,7 +1,7 @@
 Source: turbovncui
 Section: utils
 Priority: optional
-Maintainer: TurboVNC UI Developer <dev@example.com>
+Maintainer: TurboVNC UI Developer <nixomose@gmail.com>
 Build-Depends: debhelper (>= 13), dh-python, python3-all, python3-setuptools
 Standards-Version: 4.6.0
 Homepage: https://github.com/yourusername/turbovncui
