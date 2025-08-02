@@ -5,4 +5,4 @@ turbovncui (5.0.0-1) unstable; urgency=medium
   * Improved compatibility with Ubuntu TurboVNC installations
   * Complete Debian package support
 
- -- TurboVNC UI Developer <nixomose@gmail.com>  Wed, 31 Jul 2024 21:00:00 +0000 
+ -- TurboVNC UI Developer <nixomose@gmail.com>  Sat, 2 Aug 2025 21:00:00 +0000 
