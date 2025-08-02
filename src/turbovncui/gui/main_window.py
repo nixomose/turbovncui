@@ -7,6 +7,8 @@ from PyQt5.QtCore import Qt
 from turbovncui.utils.database import ConnectionDatabase
 from turbovncui.utils.vnc_launcher import VNCLaucher
 from turbovncui.gui.connection_dialog import ConnectionDialog
+from turbovncui.gui.about_dialog import AboutDialog
+import turbovncui
 
 
 class MainWindow(QMainWindow):
@@ -74,6 +76,11 @@ class MainWindow(QMainWindow):
         )
         button_layout.addWidget(self.connect_button)
         
+        # About button
+        self.about_button = QPushButton("About")
+        self.about_button.clicked.connect(self.show_about)
+        button_layout.addWidget(self.about_button)
+        
         layout.addLayout(button_layout)
         
         # Status bar
@@ -89,7 +96,17 @@ class MainWindow(QMainWindow):
         else:
             status_message = f"Warning - TurboVNC not found: {turbovnc_path}"
         
+        # Show status on left, version on right
         self.statusBar().showMessage(status_message)
+        
+        # Add version label to the right side of status bar
+        version_label = QLabel(f"v{turbovncui.__version__}")
+        self.statusBar().addPermanentWidget(version_label)
+    
+    def show_about(self):
+        """Show the about dialog."""
+        dialog = AboutDialog(self)
+        dialog.exec()
     
     def load_connections(self):
         """Load connections from database."""
