@@ -54,28 +54,30 @@ class VNCLaucher:
     def test_connection(self, connection: Connection) -> bool:
         """Test if TurboVNC can be launched (doesn't actually connect)."""
         try:
-            # Just check if the command exists
+            # Just check if the command exists and produces output
             result = subprocess.run(
                 [self.turbovnc_path, "--help"],
                 capture_output=True,
                 text=True,
                 timeout=5
             )
-            return result.returncode == 0
+            # TurboVNC returns 1 but still works, so check for output instead
+            return len(result.stdout) > 0 or len(result.stderr) > 0
         except (FileNotFoundError, subprocess.TimeoutExpired):
             return False
     
     def is_turbovnc_available(self) -> bool:
         """Check if TurboVNC is available and executable."""
         try:
-            # Just check if the command exists
+            # Just check if the command exists and produces output
             result = subprocess.run(
                 [self.turbovnc_path, "--help"],
                 capture_output=True,
                 text=True,
                 timeout=5
             )
-            return result.returncode == 0
+            # TurboVNC returns 1 but still works, so check for output instead
+            return len(result.stdout) > 0 or len(result.stderr) > 0
         except (FileNotFoundError, subprocess.TimeoutExpired):
             return False
     
