@@ -77,7 +77,19 @@ class MainWindow(QMainWindow):
         layout.addLayout(button_layout)
         
         # Status bar
-        self.statusBar().showMessage("Ready")
+        self.update_turbovnc_status()
+    
+    def update_turbovnc_status(self):
+        """Update the status bar with TurboVNC detection info."""
+        turbovnc_path = self.vnc_launcher.get_detected_path()
+        
+        # Test if TurboVNC is available
+        if self.vnc_launcher.is_turbovnc_available():
+            status_message = f"Ready - TurboVNC: {turbovnc_path}"
+        else:
+            status_message = f"Warning - TurboVNC not found: {turbovnc_path}"
+        
+        self.statusBar().showMessage(status_message)
     
     def load_connections(self):
         """Load connections from database."""
