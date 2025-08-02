@@ -8,6 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      actions: read
     
     steps:
     - name: Checkout code
@@ -53,7 +57,7 @@ jobs:
         echo "Contents of dist directory:"
         ls -la dist/
         
-    - name: Find and upload .deb file
+    - name: Upload Release Assets
       if: github.event_name == 'release'
       run: |
         DEB_FILE=$(find dist/ -name "turbovncui_*.deb" | head -1)
@@ -62,16 +66,7 @@ jobs:
           ls -la dist/
           exit 1
         fi
-        echo "Found .deb file: $DEB_FILE"
-        cp "$DEB_FILE" /tmp/turbovncui.deb
-        
-    - name: Upload Release Assets
-      if: github.event_name == 'release'
-      uses: actions/upload-release-asset@v1
+        echo "Uploading $DEB_FILE to release assets..."
+        gh release upload ${{ github.event.release.tag_name }} "$DEB_FILE" --clobber
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: /tmp/turbovncui.deb
-        asset_name: turbovncui.deb
-        asset_content_type: application/vnd.debian.binary-package 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
