@@ -1,6 +1,8 @@
-turbovncui (6.0.0-1) unstable; urgency=medium
+turbovncui (7.0.0-1) unstable; urgency=medium
 
-  * Fixed TurboVNC detection logic - now correctly detects TurboVNC binary
+  * Added About dialog with version information and project details
+  * Added About button to main interface
+  * Added version display to status bar (right-justified)
   * Enhanced automatic TurboVNC detection
   * Improved compatibility with Ubuntu TurboVNC installations
   * Complete Debian package support
