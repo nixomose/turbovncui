@@ -1,8 +1,6 @@
-turbovncui (4.0.0-1) unstable; urgency=medium
+turbovncui (5.0.0-1) unstable; urgency=medium
 
-  * Major release with fixed GitHub Actions workflow
-  * Fixed release asset upload permissions
-  * Updated to GitHub CLI for reliable uploads
+  * Fixed GitHub Actions permissions for release asset uploads
   * Enhanced automatic TurboVNC detection
   * Improved compatibility with Ubuntu TurboVNC installations
   * Complete Debian package support
