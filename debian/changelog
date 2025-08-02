@@ -1,6 +1,6 @@
-turbovncui (5.0.0-1) unstable; urgency=medium
+turbovncui (6.0.0-1) unstable; urgency=medium
 
-  * Fixed GitHub Actions permissions for release asset uploads
+  * Fixed TurboVNC detection logic - now correctly detects TurboVNC binary
   * Enhanced automatic TurboVNC detection
   * Improved compatibility with Ubuntu TurboVNC installations
   * Complete Debian package support
