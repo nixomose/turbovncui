@@ -1,10 +1,10 @@
-turbovncui (3.0.0-1) unstable; urgency=medium
+turbovncui (4.0.0-1) unstable; urgency=medium
 
-  * Major release with automatic TurboVNC detection
-  * Added smart binary detection for /opt/TurboVNC/bin/vncviewer
-  * Enhanced status bar with TurboVNC path display
+  * Major release with fixed GitHub Actions workflow
+  * Fixed release asset upload permissions
+  * Updated to GitHub CLI for reliable uploads
+  * Enhanced automatic TurboVNC detection
   * Improved compatibility with Ubuntu TurboVNC installations
-  * Better error handling and user feedback
   * Complete Debian package support
 
  -- TurboVNC UI Developer <dev@example.com>  Wed, 31 Jul 2024 21:00:00 +0000 
