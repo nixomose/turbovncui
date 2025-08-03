@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="turbovncui",
-    version="7.0.0",
+    version="8.0.0",
     description="A graphical frontend for TurboVNC",
     author="TurboVNC UI Developer",
     package_dir={"": "src"},

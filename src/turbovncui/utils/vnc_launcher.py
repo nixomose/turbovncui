@@ -28,7 +28,14 @@ class VNCLaucher:
         """Launch TurboVNC with the specified connection."""
         try:
             # Build the command
-            cmd = [self.turbovnc_path, connection.get_connection_string()]
+            cmd = [self.turbovnc_path]
+            
+            # Add username parameter if specified
+            if connection.username:
+                cmd.extend(["-User", connection.username])
+            
+            # Add the connection string
+            cmd.append(connection.get_connection_string())
             
             # Launch the process
             subprocess.Popen(

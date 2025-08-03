@@ -1,5 +1,7 @@
-turbovncui (7.0.0-1) unstable; urgency=medium
+turbovncui (8.0.0-1) unstable; urgency=medium
 
+  * Added TurboVNC username parameter support (-User flag)
+  * Enhanced connection string handling for proper authentication
   * Added About dialog with version information and project details
   * Added About button to main interface
   * Added version display to status bar (right-justified)

@@ -43,10 +43,7 @@ class Connection:
     
     def get_connection_string(self) -> str:
         """Get the connection string for TurboVNC."""
-        if self.username:
-            return f"{self.username}@{self.host}:{self.port}"
-        else:
-            return f"{self.host}:{self.port}"
+        return f"{self.host}:{self.port}"
     
     def __str__(self) -> str:
         """String representation for display."""
